@@ -47,12 +47,18 @@ angular.module('starter.controllers', ['ionic' , 'ngCordova'])
 .controller('TrackerCtrl', function($scope) {})
 
 
-.controller('RedditCtrl', function($scope, SomeDataFactory) {
-	var _this = this;
-	SomeDataFactory.getSomeData().then(function(response){
-    var url = "https://www.reddit.com/.json";
-    
-	}).catch(function(response){
-		//error
-  });
+.controller('RedditCtrl', function($scope, $http) {
+	$scope.result = "";
+  $http.get('https://www.reddit.com/.json')
+    .success(function(data, status, headers,config){
+      console.log('data success');
+      console.log(data); // for browser console
+      $scope.result = data; // for UI
+    })
+    .error(function(data, status, headers,config){
+      console.log('data error');
+    })
+    .then(function(result){
+      things = result.data;
+    });
 });
