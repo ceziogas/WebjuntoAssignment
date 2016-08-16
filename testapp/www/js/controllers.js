@@ -1,11 +1,25 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ionic' , 'ngCordova'])
 
 .controller('DashCtrl', function($scope) {})
 
-.controller('GoogleCtrl', function($scope) {
-	$scope.google = {
-		testerino: true
-	};
+.controller('GoogleCtrl', function($scope, $state, $cordovaGeolocation) {
+  var options = {timeout: 100000, enableHighAccuracy: false};
+ 
+  $cordovaGeolocation.getCurrentPosition(options).then(function(position){
+ 
+    var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+ 
+    var mapOptions = {
+      center: latLng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+ 
+    $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+ 
+  }, function(error){
+    console.log("Could not get location");
+  })
 })
 
 
@@ -29,8 +43,12 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+.controller('RedditCtrl', function($scope, SomeDataFactory) {
+	var _this = this;
+	SomeDataFactory.getSomeData().then(function(response){
+		//code here
+		_this.data = response.datat;
+	}).catch(function(response){
+		//error
+  });
 });

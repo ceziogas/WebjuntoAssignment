@@ -5,7 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'ngCordova' , 'starter.controllers', 'starter.services'])
+
+
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -21,7 +23,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       StatusBar.styleDefault();
     }
   });
-})
+}) 
+
+ 
+ 
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -49,14 +54,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
-   .state('tab.google', {
+  .state('tab.google', {
     url: '/google',
-    views: {
-      'tab-google': {
-        templateUrl: 'templates/tab-google.html',
-        controller: 'GoogleCtrl'
-      }
-    }
+	views: {
+		'tab-google': {
+    templateUrl: 'templates/tab-google.html',
+    controller: 'GoogleCtrl'
+		}
+	}
   })
   .state('tab.chats', {
       url: '/chats',
@@ -77,12 +82,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.reddit', {
+    url: '/Reddit',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-Reddit': {
+        templateUrl: 'templates/tab-Reddit.html',
+        controller: 'RedditCtrl'
       }
     }
   });
@@ -91,3 +96,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $urlRouterProvider.otherwise('/tab/dash');
 
 });
+
+//.controller('GoogleCtrl', function($scope, $state, $cordovaGeolocation) {
+ 
+//});
