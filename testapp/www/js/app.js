@@ -45,12 +45,12 @@ angular.module('starter', ['ionic', 'ngCordova' , 'starter.controllers', 'starte
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.Viewer', {
+    url: '/Viewer',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-Viewer': {
+        templateUrl: 'templates/tab-Viewer.html',
+        controller: 'ViewerCtrl'
       }
     }
   })
@@ -63,24 +63,15 @@ angular.module('starter', ['ionic', 'ngCordova' , 'starter.controllers', 'starte
 		}
 	}
   })
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
+  .state('tab.Tracker', {
+    url: '/Tracker',
+    views: {
+      'tab-Tracker': {
+        templateUrl: 'templates/tab-Tracker.html',
+        controller: 'TrackerCtrl'
       }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
+    }
+  })
 
   .state('tab.reddit', {
     url: '/Reddit',
@@ -93,7 +84,7 @@ angular.module('starter', ['ionic', 'ngCordova' , 'starter.controllers', 'starte
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/Viewer');
 
 });
 
