@@ -3212,6 +3212,8 @@ textarea {
   -webkit-font-smoothing: inherit;
   /* 5 */
   background-image: none;
+  
+  border: 1;
   /* 6 */ }
 
 /**

@@ -3,5 +3,52 @@
     <p>
 	This is the Score Tracker page
 	</p>
+	<form onsubmit="return Parse.initialize(); return false;" id="Tracker">
+		Team 1 Name:<br>
+		<input id="team1" type="text" name="team1" value="Mickey"><br>
+		Team 1 Score:<br>
+		<input id="team1score" type="int" name="team1score" value="0"><br>
+		Team 2 Name:<br>
+		<input id="team2" type="text" name="team2" value="Mouse"><br>
+		Team 2 Score:<br>
+		<input id="team12score" type="int" name="team2score" value="0"><br>
+		
+		<input type="submit" value="Submit">
+	</form>
+	<script>
+        Parse.initialize("https://pg-app-iadicusec7qutihcl29vdgxi59k6pl.scalabl.cloud/1/", "hb0tpmflqwz7uhhpke8zisxk9i5p7hc24l5ltgei");
+
+        var ParseObj = Parse.Object.extend('Tracker'); //create local parse object from your Parse class
+
+        $('#contact-form').submit(function(e) {
+        //on form submit
+            e.preventDefault();
+
+            //get data from form
+            var data = {
+                team1: $("#team1").val(),
+                team1score: $("#team1score").val(),
+                team2: $("#team2").val(),
+				team2score: $("#team2score").val()
+            };
+
+            //create new Parse object
+            parseObj = new ParseObj();
+
+            //match the key values from the form, to your parse class, then save it
+            parseObj.save(data, {
+                    //if successful
+                    success: function(parseObj) {
+                            alert(parseObj.get('team1') + " " + parseObj.get('team1score') + " " + parseObj.get('team2') + parseObj.get("team2score") + " saved to Parse.")
+                        }
+                    ,
+                    error: function(parseObj, error) {
+                        console.log(parseObj);
+                        console.log(error);
+                    }
+                }
+            );
+        });
+    </script>
   </ion-content>
 </ion-view>

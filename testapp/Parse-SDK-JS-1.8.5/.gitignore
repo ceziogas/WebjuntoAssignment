@@ -1,0 +1,9 @@
+coverage
+dist
+lib
+logs
+node_modules
+test_output
+*~
+.DS_Store
+.idea/
